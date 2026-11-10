@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 import requests
@@ -13,7 +14,9 @@ app.add_middleware(
 )
 
 # Replace the value below with your OpenWeatherMap API key (https://openweathermap.org/api)
-API_KEY = "b5862c60dcf3cc2e866cf11e99ca42fb"
+
+
+API_KEY = os.getenv("OPENWEATHER_API_KEY", "")
 
 @app.get("/")
 def read_root():

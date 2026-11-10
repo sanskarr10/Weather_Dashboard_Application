@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
+
 function App() {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState(null);
@@ -8,7 +10,7 @@ function App() {
   const fetchWeather = async () => {
     if (!city.trim()) return;
     try {
-      const res = await fetch(`http://localhost:8000/weather?city=${encodeURIComponent(city)}`);
+      const res = await fetch(`${API_URL}/weather?city=${encodeURIComponent(city)}`);
       const data = await res.json();
       if (data.error) {
         setError(data.error);
